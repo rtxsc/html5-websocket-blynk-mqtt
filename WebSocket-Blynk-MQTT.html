@@ -49,7 +49,7 @@
       <button id="disconnect_btn">Disconnect</button>
   </form>
   <button id="blynkplan_btn" style="display: inline;">SWITCH PLAN</button>
-  <label id="displayValue" style="display: inline;"> Current Plan: Free Plan </label>
+  <label id="displayValue" style="display: inline;"> Current Plan: Free Plan (30K Messages/month)</label>
   <pre><samp id="log"/></pre>
 
   <script type="text/javascript">
@@ -212,7 +212,6 @@
     document.querySelector('#blynkplan_btn').addEventListener('click', e => {
       e.preventDefault()
 
-
       if (window.navigator && window.navigator.vibrate) {
         // Vibration API is supported
         navigator.vibrate(200);
@@ -221,14 +220,13 @@
           console.log("Vibration API not supported on this device/browser.");
       }
 
-      
       const statusLabel = document.getElementById('displayValue');
       currentValue = !currentValue; // Toggles the boolean value
         if (currentValue) {
             statusLabel.textContent = 'Current Plan: PRO Plan';
             is_free_plan = false
         } else {
-            statusLabel.textContent = 'Current Plan: Free Plan';
+            statusLabel.textContent = 'Current Plan: Free Plan (30K Messages/month)';
             is_free_plan = true
         }
 
