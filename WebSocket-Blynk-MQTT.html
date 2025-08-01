@@ -48,6 +48,8 @@
       </label>
       <input id="connect_btn" type="submit" value="Connect"></div>
       <button id="disconnect_btn">Disconnect</button>
+      <button id="plan_switch_btn">FREE PLAN</button>
+
   </form>
   <pre><samp id="log"/></pre>
 
@@ -67,7 +69,7 @@
     / _ )/ /_ _____  / /__
    / _  / / // / _ \\/  '_/
   /____/_/\\_, /_//_/_/\\_\\
-          /___/ RTXSC HTML5 ❤️ WebSocket
+          /___/ RTXSC HTML5 ❤️ WebSocket | Fri 1 Aug 2025
 `
 
   let Logger = {
@@ -157,6 +159,7 @@
           Logger.log('Connected [secure]')
           document.querySelector('#auth_token').disabled = true
           document.querySelector('#connect_btn').style.display = 'none'
+          document.querySelector('#plan_switch_btn').style.display = 'none'
           document.querySelector('#disconnect_btn').style.display = 'inline-block'
 
           onConnection()
