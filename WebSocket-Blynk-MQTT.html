@@ -48,9 +48,9 @@
       </label>
       <input id="connect_btn" type="submit" value="Connect"></div>
       <button id="disconnect_btn">Disconnect</button>
-      <button id="plan_switch_btn">FREE PLAN</button>
-
   </form>
+  <button id="plan_switch_btn">FREE PLAN</button>
+
   <pre><samp id="log"/></pre>
 
   <script type="text/javascript">
@@ -207,6 +207,11 @@
       if (client) {
         client.end()
       }
+    })
+
+    document.querySelector('#plan_switch_btn').addEventListener('click', e => {
+      e.preventDefault()
+      Logger.log("plan switch button pressed")
     })
 
 
