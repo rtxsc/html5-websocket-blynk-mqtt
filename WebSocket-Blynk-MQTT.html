@@ -43,9 +43,8 @@
 
 </head>
 <body>
-  <h1>🌞 MQTT Air Cooler/Heater HTML5 sample | Modified 1 Aug 2025 Fri</h1>
-  <h2 style="color: crimson;">THIS APPLICATION CONSUMES QUOTA IF ENABLED. USE SWITCH PLAN BUTTON TO TOGGLE!</h2>
-
+  <h1 style="color:slateblue;">🌞 MQTT Air Cooler/Heater HTML5 sample | Modified 1 Aug 2025 Fri</h1>
+  <h3 style="color: crimson;">THIS APPLICATION CONSUMES QUOTA IF ENABLED. USE SWITCH PLAN BUTTON TO TOGGLE!</h3>
   <form id="connect_form">
       <label>Device Auth Token:
         <input id="auth_token" name="auth" type="text" pattern="[a-zA-Z0-9\-_]{32}" maxlength="32" required="required" placeholder="paste AUTH_TOKEN here...">
@@ -54,9 +53,9 @@
       <button id="disconnect_btn">Disconnect</button>
   </form>
   <input type="checkbox" class="custom-color" id="blynkplan_btn"" switch>
-  <label for="blynkplan_btn">BLYNK PLAN SWITCHER</label>
+  <label for="blynkplan_btn">BLYNK PLAN CHECKBOX (HAPTIC ENABLED)</label>
+  <button id="clear_btn" switch>CLEAR LOG</button>
   <label id="displayValue" style="display: inline;"> Current Plan: Free Plan (30K Messages/month)</label>
-  <button id="blynkplan_btn" switch>SWITCH PLAN</button>
 
   <pre><samp id="log"/></pre>
 
@@ -214,20 +213,16 @@
       }
     })
 
+    document.querySelector('#clear_btn').addEventListener('click', e => {
+      e.preventDefault()
+      Logger.clear()
+    })
+
     let currentValue = false; // Initial state (e.g., false for 'Off', true for 'On')
     let is_free_plan = true
 
     document.querySelector('#blynkplan_btn').addEventListener('click', e => {
       e.preventDefault()
-
-      if (window.navigator && window.navigator.vibrate) {
-        // Vibration API is supported
-        navigator.vibrate(200);
-      } else {
-          // Vibration API not supported
-          console.log("Vibration API not supported on this device/browser.");
-      }
-
       const statusLabel = document.getElementById('displayValue');
       currentValue = !currentValue; // Toggles the boolean value
         if (currentValue) {
@@ -238,7 +233,7 @@
             is_free_plan = true
         }
 
-      Logger.log('Plan Switcher Button Pressed - is_free_plan Value:', is_free_plan)
+      Logger.log('is_free_plan:', is_free_plan)
 
     })
 
