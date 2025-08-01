@@ -207,6 +207,13 @@
       }
     })
 
+    document.querySelector('#blynkplan_btn').addEventListener('click', e => {
+      e.preventDefault()
+      Logger.log('Plan Switcher Button Pressed | via document.querySelector')
+      console.log("Plan Switcher Button Pressed | via document.querySelector")
+
+    })
+
     document.addEventListener('DOMContentLoaded', function() {
 
     const toggleButton = document.getElementById('blynkplan_btn');
