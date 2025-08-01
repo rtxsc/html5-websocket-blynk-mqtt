@@ -224,6 +224,8 @@
     document.querySelector('#clear_btn').addEventListener('click', e => {
       e.preventDefault()
       Logger.clear()
+      Logger.log(LOGO)
+      connect('wss://blynk.cloud:443/mqtt')
     })
 
     let currentValue = false; // Initial state (e.g., false for 'Off', true for 'On')
