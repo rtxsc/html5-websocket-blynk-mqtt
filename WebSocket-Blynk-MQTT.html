@@ -211,7 +211,17 @@
 
     document.querySelector('#blynkplan_btn').addEventListener('click', e => {
       e.preventDefault()
-      navigator.vibrate(200);
+
+
+      if (window.navigator && window.navigator.vibrate) {
+        // Vibration API is supported
+        navigator.vibrate(200);
+      } else {
+          // Vibration API not supported
+          console.log("Vibration API not supported on this device/browser.");
+      }
+
+      
       const statusLabel = document.getElementById('displayValue');
       currentValue = !currentValue; // Toggles the boolean value
         if (currentValue) {
