@@ -65,6 +65,11 @@
   <button id="clear_btn" switch>CLEAR LOG</button>
   <label id="displayValue" style="display: inline;"> Current Plan: Free Plan (30K Messages/month)</label>
 
+  <p>X: <span id="xlabel"></span></p>
+  <p>Y: <span id="ylabel"></span></p>
+  <p>Z: <span id="zlabel"></span></p>
+
+
   <pre><samp id="log"/></pre>
 
   <script type="text/javascript">
@@ -245,6 +250,29 @@
       Logger.log('is_free_plan:', is_free_plan)
 
     })
+
+    if (window.DeviceMotionEvent) {
+    window.addEventListener('devicemotion', function(event) {
+        if (event.rotationRate) {
+            let alpha = event.rotationRate.alpha; // Rotation rate around Z-axis
+            let beta = event.rotationRate.beta;   // Rotation rate around X-axis
+            let gamma = event.rotationRate.gamma; // Rotation rate around Y-axis
+
+            let x = document.getElementById("xlabel");
+            let y = document.getElementById("ylabel");
+            let z = document.getElementById("zlabel");
+
+            x.innerText = beta;
+            y.innerText = gamma;
+            z.innerText = alpha;
+
+            // Use the rotation rate data for your application
+            console.log(`Rotation Rate: Alpha=${alpha}, Beta=${beta}, Gamma=${gamma}`);
+        }
+    });
+  } else {
+      console.log("DeviceMotionEvent is not supported on this device.");
+  }
 
  
 
