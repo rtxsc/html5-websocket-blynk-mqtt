@@ -208,6 +208,7 @@
     })
 
     let currentValue = false; // Initial state (e.g., false for 'Off', true for 'On')
+    let is_free_plan = true
 
     document.querySelector('#blynkplan_btn').addEventListener('click', e => {
       e.preventDefault()
@@ -215,11 +216,13 @@
       currentValue = !currentValue; // Toggles the boolean value
         if (currentValue) {
             statusLabel.textContent = 'Current Plan: PRO Plan';
+            is_free_plan = false
         } else {
             statusLabel.textContent = 'Current Plan: Free Plan';
+            is_free_plan = true
         }
 
-      Logger.log('Plan Switcher Button Pressed - Current Value:', currentValue)
+      Logger.log('Plan Switcher Button Pressed - is_free_plan Value:', is_free_plan)
 
     })
 
@@ -234,7 +237,6 @@
     let power_on = false
     let target_temp = 23  // Target temperature, can be set from 10 to 30
     let current_temp = 15 // Initial current temperature
-    let is_free_plan = true
 
     function terminal_print() {
       let line = Array.prototype.slice.call(arguments).map(function(arg) {
