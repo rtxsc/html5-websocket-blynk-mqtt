@@ -212,6 +212,7 @@
 
     document.querySelector('#blynkplan_btn').addEventListener('click', e => {
       e.preventDefault()
+      navigator.vibrate(200);
       const statusLabel = document.getElementById('displayValue');
       currentValue = !currentValue; // Toggles the boolean value
         if (currentValue) {
