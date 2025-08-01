@@ -207,33 +207,23 @@
       }
     })
 
+    let currentValue = false; // Initial state (e.g., false for 'Off', true for 'On')
+
     document.querySelector('#blynkplan_btn').addEventListener('click', e => {
       e.preventDefault()
-      Logger.log('Plan Switcher Button Pressed | via document.querySelector')
-      console.log("Plan Switcher Button Pressed | via document.querySelector")
+      const statusLabel = document.getElementById('displayValue');
+      currentValue = !currentValue; // Toggles the boolean value
+        if (currentValue) {
+            statusLabel.textContent = 'Current Plan: PRO Plan';
+        } else {
+            statusLabel.textContent = 'Current Plan: Free Plan';
+        }
+
+      Logger.log('Plan Switcher Button Pressed - Current Value:', currentValue)
 
     })
 
-    document.addEventListener('DOMContentLoaded', function() {
-
-    const toggleButton = document.getElementById('blynkplan_btn');
-    const displayValue = document.getElementById('displayValue');
-    let currentValue = false; // Initial state (e.g., false for 'Off', true for 'On')
-
-    toggleButton.addEventListener('click', function() {
-        Logger.log('Plan Switcher Button Pressed')
-
-        currentValue = !currentValue; // Toggles the boolean value
-        console.log("currentValue", currentValue)
-        if (currentValue) {
-            displayValue.textContent = 'Current Plan: PRO Plan';
-            toggleButton.textContent = 'Turn Off'; // Update button text
-        } else {
-            displayValue.textContent = 'Current Plan: Free Plan';
-            toggleButton.textContent = 'Turn On'; // Update button text
-        }
-        });
-    });
+ 
 
 
 
