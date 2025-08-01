@@ -214,7 +214,10 @@
     let currentValue = false; // Initial state (e.g., false for 'Off', true for 'On')
 
     toggleButton.addEventListener('click', function() {
+        Logger.log('Plan Switcher Button Pressed')
+
         currentValue = !currentValue; // Toggles the boolean value
+        console.log("currentValue", currentValue)
         if (currentValue) {
             displayValue.textContent = 'Current Plan: PRO Plan';
             toggleButton.textContent = 'Turn Off'; // Update button text
