@@ -38,19 +38,18 @@
 
 </head>
 <body>
-  <h1>🌞 MQTT Air Cooler/Heater HTML5 sample</h1>
-  <h1 style="color: crimson;">APPLICATION CONSUMES QUOTA IF ENABLED</h1>
+  <h1>🌞 MQTT Air Cooler/Heater HTML5 sample | Modified 1 Aug 2025 Fri</h1>
+  <h2 style="color: crimson;">THIS APPLICATION CONSUMES QUOTA IF ENABLED. USE SWITCH PLAN BUTTON TO TOGGLE!</h2>
 
   <form id="connect_form">
       <label>Device Auth Token:
-        <input id="auth_token" name="auth" type="text" pattern="[a-zA-Z0-9\-_]{32}" maxlength="32" required="required" placeholder="SiIhq6yO...">
+        <input id="auth_token" name="auth" type="text" pattern="[a-zA-Z0-9\-_]{32}" maxlength="32" required="required" placeholder="paste AUTH_TOKEN here...">
       </label>
       <input id="connect_btn" type="submit" value="Connect"></div>
       <button id="disconnect_btn">Disconnect</button>
   </form>
   <button id="blynkplan_btn">SWITCH PLAN</button>
-  <p id="displayValue">Current Plan: Free Plan</p>
-
+  <label id="displayValue"> Current Plan: Free Plan </label>
   <pre><samp id="log"/></pre>
 
   <script type="text/javascript">
