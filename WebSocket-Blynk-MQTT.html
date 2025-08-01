@@ -50,7 +50,7 @@
   </style>
 
 </head>
-<body>
+<body onload=requestGyroPermission()>
   <h1 style="color:slateblue;">🌞 MQTT Air Cooler/Heater HTML5 sample | Modified 1 Aug 2025 Fri</h1>
   <h3 style="color: crimson;">THIS APPLICATION CONSUMES QUOTA IF ENABLED. USE SWITCH PLAN BUTTON TO TOGGLE!</h3>
   <form id="connect_form">
@@ -251,8 +251,25 @@
 
     })
 
-    if (window.DeviceMotionEvent) {
-    window.addEventListener('devicemotion', function(event) {
+
+  function requestGyroPermission() {
+    if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+        DeviceOrientationEvent.requestPermission()
+            .then(response => {
+                if (response === 'granted') {
+                    window.addEventListener('deviceorientation', handleDeviceOrientation);
+                }
+            })
+            .catch(console.error);
+    } else {
+        // DeviceOrientationEvent.requestPermission is not supported (e.g., older iOS or other browsers)
+        // You might still be able to use deviceorientation if no permission is required.
+        window.addEventListener('deviceorientation', handleDeviceOrientation);
+    }
+  }
+
+  function handleDeviceOrientation(event) {
+
         if (event.rotationRate) {
             let alpha = event.rotationRate.alpha; // Rotation rate around Z-axis
             let beta = event.rotationRate.beta;   // Rotation rate around X-axis
@@ -265,18 +282,11 @@
             x.innerText = beta;
             y.innerText = gamma;
             z.innerText = alpha;
-
             // Use the rotation rate data for your application
             console.log(`Rotation Rate: Alpha=${alpha}, Beta=${beta}, Gamma=${gamma}`);
         }
-    });
-  } else {
-      console.log("DeviceMotionEvent is not supported on this device.");
-  }
-
  
-
-
+  }
 
     /*
      * Demo application logic
