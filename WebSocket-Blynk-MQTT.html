@@ -39,6 +39,9 @@
 </head>
 <body>
   <h1>🌞 MQTT Air Cooler/Heater HTML5 sample</h1>
+  <h1 style="color: crimson;"> THIS TEMPLATE CONSUME MESSAGE QUOTA LIKE CRAZY WHILE IDLING </h1>
+  <h2 style="color: crimson;"> APPLICATION LOGIC HAS BEEN ALTERED TO SAVE QUOTA </h2>
+
   <form id="connect_form">
       <label>Device Auth Token:
         <input id="auth_token" name="auth" type="text" pattern="[a-zA-Z0-9\-_]{32}" maxlength="32" required="required" placeholder="SiIhq6yO...">
@@ -211,16 +214,22 @@
     let power_on = false
     let target_temp = 23  // Target temperature, can be set from 10 to 30
     let current_temp = 15 // Initial current temperature
+    let is_free_plan = true
+
 
     function terminal_print() {
       let line = Array.prototype.slice.call(arguments).map(function(arg) {
         return typeof arg === 'string' ? arg : JSON.stringify(arg)
       }).join(' ')
-      client.publish("ds/Terminal", line + "\n", { qos })
+      if (!is_free_plan){
+        client.publish("ds/Terminal", line + "\n", { qos })
+      }
     }
 
     function onConnection() {
-      client.publish("get/ds", "Power,Set Temperature", { qos })
+      if (!is_free_plan){
+        client.publish("get/ds", "Power,Set Temperature", { qos })
+      }
       terminal_print(LOGO)
       terminal_print("Type \"help\" for the list of available commands")
     }
@@ -277,15 +286,20 @@
       }
 
       let state_colors = ["", "E4F6F7", "E6F7E4", "F7EAE4", "E4EDF7"]
-      client.publish("ds/Status", String(state))
-      client.publish("ds/Status/prop/color", state_colors[state])
+
+      if (!is_free_plan){
+        client.publish("ds/Status", String(state))
+        client.publish("ds/Status/prop/color", state_colors[state])
+      }
     }
 
     setInterval(() => {
       _update_temperature()
       if (client && client.connected) {
         // publish message
-        client.publish("ds/Current Temperature", String(current_temp))
+        if (!is_free_plan){
+          client.publish("ds/Current Temperature", String(current_temp))
+        }
         _update_widget_state()
       }
     }, 1000)
