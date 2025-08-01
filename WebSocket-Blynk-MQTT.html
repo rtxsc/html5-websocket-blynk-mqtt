@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
-  <title>Blynk MQTT client APPLICATION</title>
+  <title>Blynk MQTT client</title>
 
   <link rel="stylesheet" href="https://unpkg.com/mvp.css">
 
@@ -48,9 +48,10 @@
       </label>
       <input id="connect_btn" type="submit" value="Connect"></div>
       <button id="disconnect_btn">Disconnect</button>
-      <button id="plan_switch_btn">FREE PLAN ACTIVE</button>
 
   </form>
+
+  <button id="plan_switch_btn">FREE PLAN ACTIVE</button>
 
   <pre><samp id="log"/></pre>
 
@@ -160,7 +161,6 @@
           Logger.log('Connected [secure]')
           document.querySelector('#auth_token').disabled = true
           document.querySelector('#connect_btn').style.display = 'none'
-          document.querySelector('#plan_switch_btn').style.display = 'none'
           document.querySelector('#disconnect_btn').style.display = 'inline-block'
 
           onConnection()
@@ -209,11 +209,6 @@
         client.end()
       }
     })
-
-    // document.querySelector('#plan_switch_btn').addEventListener('click', e => {
-    //   e.preventDefault()
-    //   Logger.log("plan switch button pressed")
-    // })
 
 
     /*
