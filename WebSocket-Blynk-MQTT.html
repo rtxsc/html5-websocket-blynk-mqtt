@@ -52,7 +52,7 @@
 <!-- <body onload="requestGyroPermission()"> -->
   <body>
 
-  <h1 style="color:rgb(65, 63, 80);">🌞 MQTT Air Cooler/Heater HTML5 sample | Modified 1 Aug 2025 Fri</h1>
+  <h4 style="color:rgb(65, 63, 80);">🌞 MQTT Air Cooler/Heater HTML5 sample | Modified 13 Aug 2025 Wed</h4>
   <p style="color: crimson;">THIS APPLICATION CONSUMES QUOTA IF ENABLED. USE SWITCH PLAN BUTTON TO TOGGLE!</p>
   <form id="connect_form">
       <label>Device Auth Token:
@@ -61,14 +61,14 @@
       <input id="connect_btn" type="submit" value="Connect"></div>
       <button id="disconnect_btn">Disconnect</button>
       <button id="clear_btn" switch>CLEAR LOG</button>
+
+      <h4>BLYNK PLAN CHECKBOX (HAPTIC ENABLED)</h4>
+      <input type="checkbox" class="custom-color" id="blynkplan_btn"" switch>
+      <h4>POWER BTN CHECKBOX (HAPTIC ENABLED)</h4>
+      <input type="checkbox" class="custom-color" id="power_btn"" switch>
+      <h4> Current Plan: <span id="displayValue"></span> </h4>
   </form>
-  <center>  
-  <h4>BLYNK PLAN CHECKBOX (HAPTIC ENABLED)</h4>
-  <input type="checkbox" class="custom-color" id="blynkplan_btn"" switch>
-  <h4>POWER BTN CHECKBOX (HAPTIC ENABLED)</h4>
-  <input type="checkbox" class="custom-color" id="power_btn"" switch>
-  <h4> Current Plan: <span> id="displayValue"</span> </h4>
-  </center>
+
   <!-- <p>X: <span id="xlabel"></span></p>
   <p>Y: <span id="ylabel"></span></p>
   <p>Z: <span id="zlabel"></span></p> -->
