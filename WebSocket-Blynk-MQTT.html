@@ -18,8 +18,8 @@
     margin-bottom: 0;
   }
   form, button, input[type="submit"] {
-    padding: 0.4rem 0.4rem;
-    margin: 5px; /* Adjust margin as needed for spacing */
+    padding: 0.4rem 1rem;
+    margin: 1px; /* Adjust margin as needed for spacing */
   }
 
   input[type="checkbox"] {
@@ -35,9 +35,6 @@
     display: inline-block;
   }
   #connect_btn {
-    display: inline;
-  }
-  #myLed {
     display: inline;
   }
   .half-width {
@@ -80,6 +77,9 @@
 
   <h4 style="color:rgb(65, 63, 80);">MQTT Air Cooler/Heater HTML5 sample | Modified 13 Aug 2025 Wed</h4>
   <p style="color: crimson;">To avoid excessive Message Quota usage, make sure to select Free Plan!</p>
+  <div class="led-light" id="myLed">
+    <p>LED</p>
+  </div>
   <form id="connect_form">
       <label>Device Auth Token:
         <input id="auth_token" name="auth" type="text" pattern="[a-zA-Z0-9\-_]{32}" maxlength="32" required="required" placeholder="paste AUTH_TOKEN here max 32 chars...">
@@ -90,9 +90,8 @@
 
       <h4>BLYNK PLAN CHECKBOX (HAPTIC ENABLED)</h4>
       <input type="checkbox" class="custom-color" id="blynkplan_btn"" switch>
-      <h4>POWER BTN CHECKBOX (HAPTIC ENABLED)</h4>
+      <h4>POWER CHECKBOX (This won't control the LED. Use Blynk button instead!)</h4>
       <input type="checkbox" class="custom-color" id="power_btn"" switch>
-      <div class="led-light" id="myLed"></div>
       <h4> Current Plan: <span id="displayValue"></span> </h4>
 
   </form>
@@ -281,12 +280,7 @@
     document.querySelector('#power_btn').addEventListener('click', e => {
       e.preventDefault()
       powerBtnValue = !powerBtnValue; // Toggles the boolean value
-      if(powerBtnValue){
-        led.classList.toggle('on');
-      }else{
-        led.classList.toggle('off');
-      }
-      Logger.log('Power:', powerBtnValue)
+      Logger.log('Power:', powerBtnValue) // normal JS log without controlling led object
     })
 
 
@@ -353,6 +347,11 @@
       Logger.log(`Got ${topic}, value: ${payload}`)
       if (topic == 'downlink/ds/Power') {
         power_on = (parseInt(payload, 10) != 0)
+        if(power_on){
+          led.classList.toggle('on');
+        }else{
+          led.classList.toggle('off');
+        }
       } else if (topic == 'downlink/ds/Set Temperature') {
         target_temp = parseFloat(payload)
       } else if (topic == 'downlink/ds/Terminal') {
