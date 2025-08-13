@@ -23,9 +23,8 @@
   }
 
   input[type="checkbox"] {
-    padding: 0.1rem 0.8rem;
-    transform: scale(4);
-    margin: 30px; 
+    transform: scale(1);
+    margin: 10px; 
   }
 
   label {
@@ -50,7 +49,9 @@
   </style>
 
 </head>
-<body onload="requestGyroPermission()">
+<!-- <body onload="requestGyroPermission()"> -->
+  <body>
+
   <h1 style="color:slateblue;">🌞 MQTT Air Cooler/Heater HTML5 sample | Modified 1 Aug 2025 Fri</h1>
   <h3 style="color: crimson;">THIS APPLICATION CONSUMES QUOTA IF ENABLED. USE SWITCH PLAN BUTTON TO TOGGLE!</h3>
   <form id="connect_form">
@@ -60,14 +61,18 @@
       <input id="connect_btn" type="submit" value="Connect"></div>
       <button id="disconnect_btn">Disconnect</button>
   </form>
+  <center>  
+  <h4>BLYNK PLAN CHECKBOX (HAPTIC ENABLED)</h4>
   <input type="checkbox" class="custom-color" id="blynkplan_btn"" switch>
-  <h4 for="blynkplan_btn">BLYNK PLAN CHECKBOX (HAPTIC ENABLED)</h4>
+  <h4>POWER BTN CHECKBOX (HAPTIC ENABLED)</h4>
+  <input type="checkbox" class="custom-color" id="power_btn"" switch>
+
   <button id="clear_btn" switch>CLEAR LOG</button>
   <label id="displayValue" style="display: inline;"> Current Plan: Free Plan (30K Messages/month)</label>
-
-  <p>X: <span id="xlabel"></span></p>
+  </center>
+  <!-- <p>X: <span id="xlabel"></span></p>
   <p>Y: <span id="ylabel"></span></p>
-  <p>Z: <span id="zlabel"></span></p>
+  <p>Z: <span id="zlabel"></span></p> -->
 
 
   <pre><samp id="log"/></pre>
@@ -232,23 +237,25 @@
       Logger.log(LOGO)
     })
 
-    let currentValue = false; // Initial state (e.g., false for 'Off', true for 'On')
-    let is_free_plan = true
+    let is_free_plan = true // default to true to avoid excessive message drain
+    let powerBtnValue = false; // default to off
+    const statusLabel = document.getElementById('displayValue');
 
     document.querySelector('#blynkplan_btn').addEventListener('click', e => {
       e.preventDefault()
-      const statusLabel = document.getElementById('displayValue');
-      currentValue = !currentValue; // Toggles the boolean value
-        if (currentValue) {
-            statusLabel.textContent = 'Current Plan: PRO Plan';
-            is_free_plan = false
-        } else {
+      is_free_plan = !is_free_plan; // Toggles the boolean value
+        if (is_free_plan) {
             statusLabel.textContent = 'Current Plan: Free Plan (30K Messages/month)';
-            is_free_plan = true
+        } else {
+            statusLabel.textContent = 'Current Plan: PRO Plan';
         }
-
       Logger.log('is_free_plan:', is_free_plan)
+    })
 
+    document.querySelector('#power_btn').addEventListener('click', e => {
+      e.preventDefault()
+      powerBtnValue = !powerBtnValue; // Toggles the boolean value
+      Logger.log('Power:', powerBtnValue)
     })
 
 
