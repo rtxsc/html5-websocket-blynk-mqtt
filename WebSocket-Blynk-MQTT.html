@@ -52,28 +52,26 @@
 <!-- <body onload="requestGyroPermission()"> -->
   <body>
 
-  <h1 style="color:slateblue;">🌞 MQTT Air Cooler/Heater HTML5 sample | Modified 1 Aug 2025 Fri</h1>
-  <h3 style="color: crimson;">THIS APPLICATION CONSUMES QUOTA IF ENABLED. USE SWITCH PLAN BUTTON TO TOGGLE!</h3>
+  <h1 style="color:rgb(65, 63, 80);">🌞 MQTT Air Cooler/Heater HTML5 sample | Modified 1 Aug 2025 Fri</h1>
+  <p style="color: crimson;">THIS APPLICATION CONSUMES QUOTA IF ENABLED. USE SWITCH PLAN BUTTON TO TOGGLE!</p>
   <form id="connect_form">
       <label>Device Auth Token:
         <input id="auth_token" name="auth" type="text" pattern="[a-zA-Z0-9\-_]{32}" maxlength="32" required="required" placeholder="paste AUTH_TOKEN here max 32 chars...">
       </label>
       <input id="connect_btn" type="submit" value="Connect"></div>
       <button id="disconnect_btn">Disconnect</button>
+      <button id="clear_btn" switch>CLEAR LOG</button>
   </form>
   <center>  
   <h4>BLYNK PLAN CHECKBOX (HAPTIC ENABLED)</h4>
   <input type="checkbox" class="custom-color" id="blynkplan_btn"" switch>
   <h4>POWER BTN CHECKBOX (HAPTIC ENABLED)</h4>
   <input type="checkbox" class="custom-color" id="power_btn"" switch>
-  <button id="clear_btn" switch>CLEAR LOG</button>
-  <h4 id="displayValue"> Current Plan: Free Plan (30K Messages/month)</h4>
+  <h4> Current Plan: <span> id="displayValue"</span> </h4>
   </center>
   <!-- <p>X: <span id="xlabel"></span></p>
   <p>Y: <span id="ylabel"></span></p>
   <p>Z: <span id="zlabel"></span></p> -->
-
-
   <pre><samp id="log"/></pre>
 
   <script type="text/javascript">
