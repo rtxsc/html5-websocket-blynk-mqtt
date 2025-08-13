@@ -18,8 +18,8 @@
     margin-bottom: 0;
   }
   form, button, input[type="submit"] {
-    padding: 0.4rem 0.8rem;
-    margin: 10px; /* Adjust margin as needed for spacing */
+    padding: 0.4rem 0.4rem;
+    margin: 5px; /* Adjust margin as needed for spacing */
   }
 
   input[type="checkbox"] {
@@ -46,14 +46,36 @@
   accent-color: DarkViolet;
   }
 
+  .led-light {
+    width: 20px; /* Adjust size as needed */
+    height: 20px;
+    border-radius: 50%; /* Makes it a circle */
+    background-color: #333; /* Off state color (dark gray) */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+    /* On state style */
+    .led-light.on {
+        background-color: #5a3dda; /* Red for "on" state (or other color) */
+        box-shadow: 0 0 15px #00a2ff, 0 0 25px #fb00ff; /* Glow effect */
+    }
+
+      /* Off state style */
+    .led-light.off {
+        background-color: #333; /* Off state color (dark gray) */
+        box-shadow: 0 0 15px #0d0b0b, 0 0 25px #060303; /* Glow effect */
+    }
+
+
   </style>
 
 </head>
 <!-- <body onload="requestGyroPermission()"> -->
   <body>
 
-  <h4 style="color:rgb(65, 63, 80);">🌞 MQTT Air Cooler/Heater HTML5 sample | Modified 13 Aug 2025 Wed</h4>
-  <p style="color: crimson;">THIS APPLICATION CONSUMES QUOTA IF ENABLED. USE SWITCH PLAN BUTTON TO TOGGLE!</p>
+  <h4 style="color:rgb(65, 63, 80);">MQTT Air Cooler/Heater HTML5 sample | Modified 13 Aug 2025 Wed</h4>
+  <p style="color: crimson;">To avoid excessive Message Quota usage, make sure to select Free Plan!</p>
   <form id="connect_form">
       <label>Device Auth Token:
         <input id="auth_token" name="auth" type="text" pattern="[a-zA-Z0-9\-_]{32}" maxlength="32" required="required" placeholder="paste AUTH_TOKEN here max 32 chars...">
@@ -66,7 +88,9 @@
       <input type="checkbox" class="custom-color" id="blynkplan_btn"" switch>
       <h4>POWER BTN CHECKBOX (HAPTIC ENABLED)</h4>
       <input type="checkbox" class="custom-color" id="power_btn"" switch>
+      <div class="led-light" id="myLed"></div>
       <h4> Current Plan: <span id="displayValue"></span> </h4>
+
   </form>
 
   <!-- <p>X: <span id="xlabel"></span></p>
@@ -85,12 +109,11 @@
    */
 
   let LOGO = `
-     ___  __          __  This is the Application Demo
+     ___  __          __  This is the Full Application Demo
     / _ )/ /_ _____  / /__
    / _  / / // / _ \\/  '_/
   /____/_/\\_, /_//_/_/\\_\\
-          /___/ RTXSC HTML5 ❤️ WebSocket | Fri 1 Aug 2025
-`
+          /___/ RTXSC HTML5 ❤️ WebSocket | Wed 13 Aug 2025`
 
   let Logger = {
     log: function() {
@@ -119,6 +142,8 @@
 
   window.addEventListener('load', (loadEvent) => {
     let client = null
+    Logger.log(LOGO)
+
 
     // https://github.com/mqttjs/MQTT.js#qos
     const qos = 0
@@ -213,7 +238,6 @@
     }
 
     document.querySelector('#disconnect_btn').style.display = 'none'
-    Logger.log(LOGO)
 
     document.querySelector('#connect_form').addEventListener('submit', e => {
         e.stopPropagation()
@@ -237,6 +261,7 @@
     let is_free_plan = true // default to true to avoid excessive message drain
     let powerBtnValue = false; // default to off
     const statusLabel = document.getElementById('displayValue');
+    const led = document.getElementById('myLed');
 
     document.querySelector('#blynkplan_btn').addEventListener('click', e => {
       e.preventDefault()
@@ -252,6 +277,11 @@
     document.querySelector('#power_btn').addEventListener('click', e => {
       e.preventDefault()
       powerBtnValue = !powerBtnValue; // Toggles the boolean value
+      if(powerBtnValue){
+        led.classList.toggle('on');
+      }else{
+        led.classList.toggle('off');
+      }
       Logger.log('Power:', powerBtnValue)
     })
 
