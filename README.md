@@ -1,6 +1,7 @@
 
-### Forked by RTXSC for Robotronix Inc. 1 Aug 2025 Fri
-# Blynk MQTT client for HTML5 / JavaScript
+#### Forked by RTXSC for Robotronix Inc. 1 Aug 2025 Fri
+## Blynk MQTT client for HTML5 / JavaScript
+Updated 13 Aug 2025
 
 HTML5, combined with WebSockets, provides a powerful duo for building real-time, interactive
 web interfaces for IoT Edge and Embedded Systems. This combination enables the creation of
@@ -26,7 +27,7 @@ that works across various devices and browsers, enhancing the user experience in
 
 [👉 Open Demo page 👈](https://bit.ly/Blynk-HTML5-MQTT-Sample)
 
-[☁️☁️☁️ WebSocket-Blynk-MQTT ☁️☁️☁️](https://html-preview.github.io/?url=https://github.com/rtxsc/html5-websocket-blynk-mqtt/blob/main/WebSocket-Blynk-MQTT.html&sample=1)
+[⚠️ WebSocket-Blynk-MQTT (Beware of Blynk Plan) ⚠️](https://html-preview.github.io/?url=https://github.com/rtxsc/html5-websocket-blynk-mqtt/blob/main/WebSocket-Blynk-MQTT.html&sample=1)
 
 [☁️ WebSocket-Blynk-MQTT-minimal ☁️](https://html-preview.github.io/?url=https://github.com/rtxsc/html5-websocket-blynk-mqtt/blob/main/WebSocket-Blynk-MQTT-minimal.html&sample=1)
 
