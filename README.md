@@ -27,9 +27,9 @@ that works across various devices and browsers, enhancing the user experience in
 
 [👉 Open Demo page 👈](https://bit.ly/Blynk-HTML5-MQTT-Sample)
 
-[⚠️ WebSocket-Blynk-MQTT (Beware of Blynk Plan) ⚠️](https://html-preview.github.io/?url=https://github.com/rtxsc/html5-websocket-blynk-mqtt/blob/main/WebSocket-Blynk-MQTT.html&sample=1)
+[⚠️ WebSocket-Blynk-MQTT (Beware of Blynk Plan) ⚠️](https://html-preview.github.io/?url=https://github.com/rtxsc/html5-websocket-blynk-mqtt/blob/main/WebSocket-Blynk-MQTT.html)
 
-[☁️ WebSocket-Blynk-MQTT-minimal ☁️](https://html-preview.github.io/?url=https://github.com/rtxsc/html5-websocket-blynk-mqtt/blob/main/WebSocket-Blynk-MQTT-minimal.html&sample=1)
+[☁️ WebSocket-Blynk-MQTT-minimal ☁️](https://html-preview.github.io/?url=https://github.com/rtxsc/html5-websocket-blynk-mqtt/blob/main/WebSocket-Blynk-MQTT-minimal.html)
 
 Insert the Auth Token of your device an click **`Connect`**
 
