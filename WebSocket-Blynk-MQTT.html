@@ -52,20 +52,20 @@
     background-color: #f4f0f0; /* Off state color (white) */
     box-shadow: 0 0 15px rgb(200, 200, 200), 0 0 25px rgb(200, 200, 200); /* Glow effect */
     transition: background-color 0.5s ease, box-shadow 0.5s ease; /* Smooth transitions */
-}
+  }
 
-    /* On state style */
-    .led-light.on {
-        background-color: #5a3dda; /* Red for "on" state (or other color) */
-        box-shadow: 0 0 15px #00a2ff, 0 0 25px #fb00ff; /* Glow effect */
-    }
+  /* On state style */
+  .led-light.on {
+      background-color: #5a3dda; /* Red for "on" state (or other color) */
+      box-shadow: 0 0 15px #00a2ff, 0 0 25px #fb00ff; /* Glow effect */
+  }
 
-      /* Off state style */
-    .led-light.off {
-        background-color: #f4f0f0; /* Off state color (white) */
-        box-shadow: 0 0 15px rgb(200, 200, 200), 0 0 25px rgb(200, 200, 200); /* Glow effect */
+  /* Off state style */
+  .led-light.off {
+      background-color: #f4f0f0; /* Off state color (white) */
+      box-shadow: 0 0 15px rgb(200, 200, 200), 0 0 25px rgb(200, 200, 200); /* Glow effect */
 
-    }
+  }
 
 
   </style>
@@ -87,11 +87,11 @@
       <button id="disconnect_btn">Disconnect</button>
       <button id="clear_btn" switch>CLEAR LOG</button>
 
-      <h4>🔘 BLYNK PLAN SWITCHER</h4>
+      <h4>BLYNK PLAN SWITCHER</h4>
       <input type="checkbox" class="custom-color" id="blynkplan_btn"" switch>
-      <h4>🔘 POWER JS BUTTON (This won't control the LED. Use Blynk button instead!)</h4>
+      <h4>POWER JS BUTTON (This won't control the LED. Use Blynk button instead!)</h4>
       <input type="checkbox" class="custom-color" id="power_btn"" switch>
-      <h4>🚫 Current Plan: <span id="displayValue"> ⚠️ Initialized to FREE Plan ⚠️ </span> </h4>
+      <h4>Current Plan: <span id="displayValue"> Initialized to FREE Plan </span> </h4>
   </form>
 
   <!-- <p>X: <span id="xlabel"></span></p>
